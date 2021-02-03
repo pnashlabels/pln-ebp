@@ -1,0 +1,75 @@
+<!--  
+/*
+Copyright 2020-2021 The State of Washington
+
+Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
+
+1. Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer.
+
+2. Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and/or other materials provided with the distribution.
+
+3. Neither the name of the copyright holder nor the names of its contributors may be used to endorse or promote products derived from this software without specific prior written permission.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. 
+ */
+
+
+-->
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button (click)="goBack()" class="appcolors" text=""></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <div class="appcolors">
+    <div [innerHtml]="staticService.staticText[theData.lg].eula.hdg1"></div>
+    <div [innerHtml]="staticService.staticText[theData.lg].eula.hdg2"></div>
+    <div [innerHtml]="staticService.staticText[theData.lg].eula.hdg3"></div><br>
+
+    <div [innerHtml]="staticService.staticText[theData.lg].eula.para0"></div><br>
+    <div [innerHtml]="staticService.staticText[theData.lg].eula.para1"></div><br>
+    <div [innerHtml]="staticService.staticText[theData.lg].eula.para2"></div><br>
+    <div [innerHtml]="staticService.staticText[theData.lg].eula.para3"></div><br>
+    <br>
+
+    <div [innerHtml]="staticService.staticText[theData.lg].eula.sect01"></div><br>
+    <div [innerHtml]="staticService.staticText[theData.lg].eula.sect02"></div><br>
+    <div [innerHtml]="staticService.staticText[theData.lg].eula.sect03"></div><br>
+    <div [innerHtml]="staticService.staticText[theData.lg].eula.sect04"></div><br>
+    <div [innerHtml]="staticService.staticText[theData.lg].eula.sect05"></div><br>
+    <div [innerHtml]="staticService.staticText[theData.lg].eula.sect06"></div><br>
+    <div [innerHtml]="staticService.staticText[theData.lg].eula.sect07"></div><br>
+    <div [innerHtml]="staticService.staticText[theData.lg].eula.sect08"></div><br>
+    <div [innerHtml]="staticService.staticText[theData.lg].eula.sect09"></div><br>
+    <div [innerHtml]="staticService.staticText[theData.lg].eula.sect10"></div><br>
+    <div [innerHtml]="staticService.staticText[theData.lg].eula.sect11"></div><br>
+    <div [innerHtml]="staticService.staticText[theData.lg].eula.sect12"></div><br>
+    <div [innerHtml]="staticService.staticText[theData.lg].eula.sect13"></div><br>
+    <div [innerHtml]="staticService.staticText[theData.lg].eula.sect14"></div><br>
+    <div [innerHtml]="staticService.staticText[theData.lg].eula.sect15"></div><br>
+    <div [innerHtml]="staticService.staticText[theData.lg].eula.sect16"></div><br>
+    <div [innerHtml]="staticService.staticText[theData.lg].eula.sect17"></div><br>
+    <div [innerHtml]="staticService.staticText[theData.lg].eula.sect18"></div><br>
+    <div [innerHtml]="staticService.staticText[theData.lg].eula.sect19"></div><br>
+    <div [innerHtml]="staticService.staticText[theData.lg].eula.sect20"></div><br>
+    <div [innerHtml]="staticService.staticText[theData.lg].eula.sect21"></div><br>
+    <div [innerHtml]="staticService.staticText[theData.lg].eula.sect22"></div><br>
+    <div [innerHtml]="staticService.staticText[theData.lg].eula.sect23"></div><br>
+    <div [innerHtml]="staticService.staticText[theData.lg].eula.sect24"></div><br>
+    <div [innerHtml]="staticService.staticText[theData.lg].eula.sect25"></div><br>
+    <div [innerHtml]="staticService.staticText[theData.lg].eula.sect26"></div><br>
+    <div [innerHtml]="staticService.staticText[theData.lg].eula.sect27"></div><br>
+    <div [innerHtml]="staticService.staticText[theData.lg].eula.sect28"></div><br>
+    <div [innerHtml]="staticService.staticText[theData.lg].eula.sect29"></div><br>
+  </div>
+  <div style="height: calc(var(--normalprint) * 4);">&nbsp;</div>
+  <ion-fab *ngIf="showTranslate" vertical="top" horizontal="end" slot="fixed">
+    <ion-fab-button size="small" (click)="switchLanguage()">
+      <ion-icon src="../../assets/images/translate3.svg" name="Switch Language"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
+</ion-content>

@@ -1,0 +1,51 @@
+<!--  
+  /*
+Copyright 2020-2021 The State of Washington
+
+Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
+
+1. Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer.
+
+2. Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and/or other materials provided with the distribution.
+
+3. Neither the name of the copyright holder nor the names of its contributors may be used to endorse or promote products derived from this software without specific prior written permission.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. 
+ */
+
+
+-->
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button (click)="goBack()" class="appcolors" text=""></ion-back-button>
+    </ion-buttons>
+    <ion-title class="appcolors ion-text-left ion-text-wrap">{{staticService.staticText[theData.lg].news.title}}
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="fineprint appcolors" style="padding: 10px;">
+    <div style="margin-bottom: 10px;">
+      <span style="font-weight: bold;">{{staticService.staticText[theData.lg].news.appVersion}}: 
+      </span>{{currVersion}} </div>
+    <div *ngFor="let update of updateList | async" style="border-bottom-width: 3px; border-bottom-color: #dfdfdf; border-bottom-style: solid; margin-bottom: 10px; padding-bottom: 10px;">
+      <div>
+        <span style="font-weight: bold;">{{staticService.staticText[theData.lg].news.date}}:</span> {{update.versionDate.seconds * 1000 | date:'yyyy-MM-dd'}}
+      </div>
+      <div style="border-bottom-color: #dfdfdf; border-bottom-style: solid; border-bottom-width: 1px;">
+        <span style="font-weight: bold;">{{staticService.staticText[theData.lg].news.version}}:</span> {{update.versionNumber}} ({{update.versionCode}})
+      </div>
+      <div *ngIf='update.versionCode > currVersionCode' [innerHTML]='staticService.staticText[theData.lg].news.updateavail'></div>
+      <br>
+      <div *ngIf="theData.lg == 'en'" [innerHTML]='update.versionInfoEN'></div>
+      <div *ngIf="theData.lg == 'es'" [innerHTML]='update.versionInfoES'></div>
+    </div>
+  </div>
+  <ion-fab *ngIf="showTranslate" vertical="top" horizontal="end" slot="fixed">
+    <ion-fab-button size="small" (click)="switchLanguage()">
+      <ion-icon src="../../assets/images/translate3.svg" name="Switch Language"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+</ion-content>

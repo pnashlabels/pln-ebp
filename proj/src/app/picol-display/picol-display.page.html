@@ -1,0 +1,115 @@
+<!--  
+  /*
+Copyright 2020-2021 The State of Washington
+
+Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
+
+1. Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer.
+
+2. Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and/or other materials provided with the distribution.
+
+3. Neither the name of the copyright holder nor the names of its contributors may be used to endorse or promote products derived from this software without specific prior written permission.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. 
+ */
+
+
+-->
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button (click)="goBack()" text=""></ion-back-button>
+    </ion-buttons>
+    <ion-title class="appcolors ion-text-left ion-text-wrap">{{staticService.staticText[theData.lg].picoldisplay.title}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="ion-padding picoldisplay appcolors">
+    <div><span class="content-label">{{picolInfo.Name}}</span></div>
+    <div><span class="content-label">EPA:</span><span class="content-normal"> {{ picolInfo.EpaNumber }} </span></div>
+    <div class="content-normal">{{ picolInfo.Registrant.Name }}</div>
+    <div *ngIf="picolInfo.Registrant.Website !=''"> <span class="content-label">{{staticService.staticText[theData.lg].picoldisplay.website}}:</span><span
+        class="content-normal"> <a href="{{ producerURL }}" target="_blank"> {{ picolInfo.Registrant.Website }}</a>
+      </span> </div>
+    <br>
+    <div><span class="content-label">{{staticService.staticText[theData.lg].picoldisplay.formulation}}:</span>
+      {{ picolInfo.Formulation }} </div>
+    <div><span class="content-label">{{staticService.staticText[theData.lg].picoldisplay.ingredients}}:</span> </div>
+    <div *ngFor="let ing of picolInfo.Ingredients">
+      <div class="picol-indent">{{ ing.Name }}</div>
+    </div>
+    <div><span class="content-label">{{staticService.staticText[theData.lg].picoldisplay.signalword}}:</span>
+      {{signalWord}}</div>
+    <div><span class="content-label">{{staticService.staticText[theData.lg].picoldisplay.intendeduser}}:</span>
+      {{ picolInfo.IntendedUser.Name }} </div>
+    <div><span class="content-label">{{staticService.staticText[theData.lg].picoldisplay.application}}:</span>
+      {{ genUsage(picolInfo.Usage) }} </div>
+    <div><span class="content-label">{{staticService.staticText[theData.lg].picoldisplay.organic}}:</span> {{ organic }}
+    </div>
+    <div><span class="content-label">{{staticService.staticText[theData.lg].picoldisplay.pesticidetypes}}:</span></div>
+    <div *ngFor="let typ of picolInfo.PesticideTypes">
+      <div class="picol-indent">{{typ.Name}} </div>
+    </div>
+    <div *ngIf="picolInfo.Supplemental != null">
+      <br>
+      <div><span class="content-label">{{ staticService.staticText[theData.lg].picoldisplay.supplemental }}:
+        </span><span class="content-normal">
+          {{ picolInfo.Supplemental }} </span></div>
+      <div><span class="content-label">{{ staticService.staticText[theData.lg].picoldisplay.supplementalName }}:
+        </span><span class="content-normal">
+          {{ picolInfo.SupplementalName }} </span></div>
+    </div>
+    <br>
+    <div *ngFor="let rec of picolInfo.StateRecords">
+      <div *ngIf="rec.StateId==1">
+        <div><span class="content-label">{{staticService.staticText[theData.lg].picoldisplay.state}}: </span>
+          {{rec.Name}} </div>
+        <div class="picol-indent">
+          <div>
+            <span class="content-label">{{staticService.staticText[theData.lg].picoldisplay.year}}:
+            </span>
+            <span *ngIf="rec.Year>=currYear" class="greenprint">
+              {{rec.Year}}</span>
+            <span *ngIf="rec.Year==lastYear" class="orangeprint">
+              {{rec.Year}}
+            </span>
+            <span *ngIf="rec.Year<lastYear" class="redprint">
+              {{rec.Year}}
+            </span>
+          </div>
+          <div><span class="content-label">{{staticService.staticText[theData.lg].picoldisplay.version}}: </span>
+            {{rec.Version}}</div>
+          <div><span class="content-label">WA ESSB 6206: </span>
+            {{rec.Essb6206}}</div>
+          <div><span class="content-label">WA I-502/I-692: </span>
+            {{rec.I502}}</div>
+        </div>
+      </div>
+    </div>
+
+    <br>
+    <ion-button fill="outline" size="small" color="primary" class="ion-text-wrap" (click)="viewLabelClick()">
+      {{staticService.staticText[theData.lg].picoldisplay.viewlabel}}
+    </ion-button><br>
+    <br>
+    <div class="fineprint">{{staticService.staticText[theData.lg].fineprint.trademarks}}</div>
+    <br>
+    <br>
+    <div class="fineprint">{{staticService.staticText[theData.lg].fineprint.picol}}</div>
+    <br>
+    <br>
+    <div style="text-align: right; font-size: small;">{{picolInfo.Id}}</div>
+  </div>
+
+  <ion-fab *ngIf="showTranslate" vertical="top" horizontal="end" slot="fixed">
+    <ion-fab-button size="small" (click)="switchLanguage()">
+      <ion-icon src="../../assets/images/translate3.svg" name="Switch Language"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>  
+
+</ion-content>
+
+<ion-footer style="background-color: rgba(255, 255, 0, 0.3); padding: 10px; text-align: center;" class="fineprint">
+  <div>{{ staticService.staticText[theData.lg].fineprint.banner }} </div>
+</ion-footer>

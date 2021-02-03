@@ -1,0 +1,80 @@
+<!--  
+  /*
+Copyright 2020-2021 The State of Washington
+
+Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
+
+1. Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer.
+
+2. Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and/or other materials provided with the distribution.
+
+3. Neither the name of the copyright holder nor the names of its contributors may be used to endorse or promote products derived from this software without specific prior written permission.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. 
+ */
+
+
+-->
+<ion-header class="appcolors">
+  <ion-toolbar>
+
+    <img src="../../assets/images/logo-1.png" style="padding: 10px;"
+      alt="LOGO: Etiquetas Pesticidas Ahora / Pesticide Labels Now">
+
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <div class="appcolors">
+    <div style="font-weight: 500; letter-spacing: -1px;" class="smallerprint">
+      <div style="text-align: center; padding-bottom: 10px;">
+        Información de salud y seguridad de 40 etiquetas de pesticidas muy utilizados en huertas de manzano y peral de Washington
+      </div>
+      <div style="text-align: center; padding-bottom: 10px;">
+        Health and Safety information from 40 top labels used in Washington State apple and pear orchards</div>
+      <div style="text-align: center;">2021</div>
+    </div>
+    <table style="border-style: none; border-collapse: collapse; width: 100%;">
+      <tr>
+        <td style="width: 33%;">
+          <div style="text-align: center; padding-top: calc(var(--normalprint) * 3);">
+
+            <img src="../../assets/images/PNASH-logo-web-150ppi-sq.png" alt="LOGO: PNASH" class="icon-img">
+
+          </div>
+        </td>
+        <td style="width: 33%;">
+          <div style="text-align: center; padding-top: calc(var(--normalprint) * 3);">
+
+            <img src="../../assets/images/W-Logo_Purple_Hex_sq.png" alt="LOGO: UW 'W'" class="icon-img">
+
+          </div>
+        </td>
+        <td style="width: 33%;">
+          <div style="text-align: center; padding-top: calc(var(--normalprint) * 3);">
+
+            <img src="../../assets/images/SHIP Grant funded by L&I.svg" alt="LOGO: SHIP Grant" class="icon-img">
+
+          </div>
+        </td>
+      </tr>
+    </table>
+  </div>
+</ion-content>
+<ion-footer>
+  <div class="fineprint appcolors" style="text-align: center; margin-bottom: 15px;">{{copyright}} </div>
+  <table class="appcolors" style="border-style: none; border-collapse: collapse; width: 100%;">
+    <tr>
+      <td style="width: 50%; padding-left: 4px; padding-right: 1px;">
+        <ion-button color="success" expand="block" class="ion-text-wrap" (click)="goNextEs()">
+          Continúe en español
+        </ion-button>
+      </td>
+      <td style="width: 50%; padding-left: 1px; padding-right: 4px;">
+        <ion-button color="success" expand="block" class="ion-text-wrap" (click)="goNextEn()">
+          Continue in English
+        </ion-button>
+      </td>
+    </tr>
+  </table>
+</ion-footer>

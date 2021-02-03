@@ -1,0 +1,436 @@
+<!--  
+  /*
+Copyright 2020-2021 The State of Washington
+
+Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
+
+1. Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer.
+
+2. Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and/or other materials provided with the distribution.
+
+3. Neither the name of the copyright holder nor the names of its contributors may be used to endorse or promote products derived from this software without specific prior written permission.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. 
+ */
+
+
+-->
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button (click)="goBack()" text=""></ion-back-button>
+    </ion-buttons>
+    <ion-title class="appcolors ion-text-left ion-text-wrap">
+      <div class="title-prod-name">{{ label.productName }}</div>
+      <div class="subtitle">EPA: {{ label.epaReg }}</div>
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ion-fab *ngIf="showTranslate" vertical="top" horizontal="end" slot="fixed">
+    <ion-fab-button size="small" (click)="switchLanguage()">
+      <ion-icon src="../../assets/images/translate3.svg" name="Switch Language"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
+  <div class="labeldisplay appcolors">
+    <!-- product information -->
+    <div [ngClass]="classesHeading00" (click)="sectClick00()">
+      <div class="hdg-text">{{ staticService.staticText[theData.lg].label.hdg00 }}</div>
+    </div>
+    <div [ngClass]="classesContent00">
+      <span class="content-label">{{ staticService.staticText[theData.lg].label.productName }}:
+      </span>{{ label.productName }}<br>
+      <span class="content-label">{{ staticService.staticText[theData.lg].label.epaRegNo }}:
+      </span>{{ label.epaReg }}<br>
+      <div *ngIf="label.omri == 'yes'">
+        <div class="plain-box">
+          {{ staticService.staticText[theData.lg].label.omriText }}
+          <br>
+        </div>
+
+      </div>
+      <span class="content-label">{{ staticService.staticText[theData.lg].label.netMeasure }}: </span>{{ measures }}<br>
+      <span class="content-label">{{ staticService.staticText[theData.lg].label.classes }}: </span>{{ classes }}<br>
+      <span class="content-label">{{ staticService.staticText[theData.lg].label.formulation }}:
+      </span>{{ formulation }}<br>
+
+      <div *ngIf="restricted == 'yes'">
+
+        <div class="plain-box">
+          <div class="large-heading" style="text-transform: uppercase;">
+            {{ staticService.staticText[theData.lg].label.restrictedUseHdg }}
+          </div><br>
+          <span class="app-viewlabel">
+            {{ staticService.staticText[theData.lg].label.restricted }}
+          </span><br><br>
+        </div>
+      </div>
+
+      <div [ngSwitch]="signalWord">
+        <div *ngSwitchCase="'CAUTION'">
+
+          <div class="gray-box" style="border-width: 5px; border-color: rgb(245, 245, 0);">
+            <div class="large-heading"> {{ staticService.staticText[theData.lg].label.signalCaution }} </div>
+          </div>
+
+        </div>
+        <div *ngSwitchCase="'WARNING'">
+
+          <div class="gray-box" style="text-align: center; border-width: 5px; border-color: orange;">
+            <div class="large-heading"> {{ staticService.staticText[theData.lg].label.signalWarning }} </div>
+          </div>
+
+        </div>
+        <div *ngSwitchCase="'DANGER'">
+
+          <div class="gray-box" style="border-width: 5px; border-color: red;">
+            <div class="large-heading"> {{ staticService.staticText[theData.lg].label.signalDanger }} </div>
+          </div>
+
+        </div>
+        <div *ngSwitchCase="'POISON'">
+
+          <div class="gray-box" style="text-align: center; border-width: 5px; border-color: red;">
+            <div class="large-heading"> {{ staticService.staticText[theData.lg].label.signalDanger }} </div>
+            <img src="../../assets/images/SkullCB.svg" style="height: 50px; padding: 10px;"
+              alt="SYMBOL: Skull and Crossbones">
+            <div class="large-heading" style="color: red;">
+              {{ staticService.staticText[theData.lg].label.signalPoison }} </div>
+          </div>
+
+        </div>
+        <div *ngSwitchCase="'UNKNOWN'">
+          <br>
+        </div>
+      </div>
+
+      <div class="plain-box large-heading" style="text-transform: uppercase;">
+        {{ staticService.staticText[theData.lg].label.forAgriculturalUseOnly }}
+      </div>
+
+      <div *ngIf="agUseRequirements != '--'">
+
+        <div class="plain-box">
+          <div style="text-transform: uppercase; font-weight: bold; text-align: center;">
+            {{ staticService.staticText[theData.lg].label.agUseRequirements }}
+          </div>
+          <br>
+          <div [innerHTML]='agUseRequirements'></div>
+        </div>
+
+      </div>
+
+      <div *ngIf="directionsForUse != '--'">
+        <br>
+
+        <div style="text-transform: uppercase; font-weight: bold;">
+          {{ staticService.staticText[theData.lg].label.directionsForUse }}:
+        </div>
+        <br>
+        <div [innerHTML]='directionsForUse'></div>
+
+        <br>
+      </div>
+
+      <div *ngIf="ingTable">
+        <table class="ing-table">
+          <thead class="ing-table-thead">
+            <th class="ing-table-th" style="width: 75%; text-align: left; padding-left: 5px;">
+              {{ staticService.staticText[theData.lg].label.activeIngredients }}
+            </th>
+            <th class="ing-table-th" style="width: 20%; text-align: right; padding-right: 5px;">
+              {{ pctColHdg }}
+            </th>
+          </thead>
+          <tbody>
+            <tr *ngFor="let itm of activeIngrs">
+              <td style="text-align: left; padding-left: 5px;"> {{ itm.name }} </td>
+              <td style="text-align: right; padding-right: 5px;"> {{ itm.pct }}% </td>
+            </tr>
+            <tr style="background-color: #efefef; border-style: solid; border-width: 1px;">
+              <td class="ing-table-th" style="width: 75%; text-align: left; padding-left: 5px;">
+                {{ staticService.staticText[theData.lg].label.otherIngredients }}
+              </td>
+              <td class="ing-table-th" style="width: 20%; text-align: right; padding-right: 5px;">
+                {{ pctColHdg }}
+              </td>
+            </tr>
+            <tr *ngFor="let itm of otherIngrs">
+              <td style="text-align: left; padding-left: 5px;"> {{ itm.name }} </td>
+              <td style="text-align: right; padding-right: 5px;"> {{ itm.pct }}% </td>
+            </tr>
+            <tr style="background-color: #efefef; border-style: solid; border-width: 1px;">
+              <td class="ing-table-th" style="width: 75%; text-align: left; padding-left: 5px;">
+                TOTAL
+              </td>
+              <td style="width: 20%; text-align: right; padding-right: 5px;">
+                {{ ingrsTotalText }}
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div *ngIf="activeWeightByVol !='--'">
+        <br>
+        <div>
+          <span [innerHTML]="activeWeightByVol"></span>
+        </div>
+        <br>
+      </div>
+
+      <div *ngIf="label.containsPetroleumDistillates == 'yes'">
+        <br>
+        <div style="font-weight: bold; text-transform: uppercase;">
+          {{ staticService.staticText[theData.lg].label.petroleumDistillates }}
+        </div>
+      </div>
+
+      <div *ngIf="pdTable">
+        <table class="ing-table">
+          <thead class="ing-table-thead">
+            <th class="ing-table-th" style="width: 75%; text-align: left; padding-left: 5px;">
+              {{ staticService.staticText[theData.lg].label.petroleumDistillatesLabel }}
+            </th>
+            <th class="ing-table-th" style="width: 20%; text-align: right; padding-right: 5px;">
+              {{ pctColHdg }}
+            </th>
+          </thead>
+          <tbody>
+            <tr *ngFor="let itm of petroleumDistillates">
+              <td style="text-align: left; padding-left: 5px;"> {{ itm.name }} </td>
+              <td style="text-align: right; padding-right: 5px;"> {{ itm.pct }}% </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div *ngIf="label.children == 'yes'">
+        <div class="plain-box">
+          <div class="large-heading" style="text-transform: uppercase;">
+            {{ staticService.staticText[theData.lg].label.childWarning }}
+          </div>
+        </div>
+      </div>
+
+      <div class="gray-box">
+        {{ staticService.staticText[theData.lg].label.notUnderstand }}
+      </div>
+    </div>
+
+    <!-- producer information -->
+    <div [ngClass]="classesHeading01" (click)="sectClick01()">
+      <div class="hdg-text">{{ staticService.staticText[theData.lg].label.hdg01 }}</div>
+    </div>
+    <div [ngClass]="classesContent01">
+      <span class="content-label">{{ staticService.staticText[theData.lg].label.producerName }}:
+      </span>{{ label.producerName }}<br>
+      <span class="content-label">{{ staticService.staticText[theData.lg].label.producerEPA }}:
+      </span>{{ label.producerEPARegNo }}<br>
+      <span class="content-label">{{ staticService.staticText[theData.lg].label.producerAddress }}:
+      </span>{{ producerAddress }}<br>
+      <span class="content-label">{{ staticService.staticText[theData.lg].label.producerPhone }}:
+      </span>{{ producerPhone }}<br>
+      <span *ngIf="producerWebsite != '--'">
+        <span class="content-label">{{ staticService.staticText[theData.lg].label.producerWebsite }}: </span>
+        <a href="{{ producerURL }}" target="_blank">{{ producerWebsite }}</a><br>
+      </span>
+    </div>
+
+    <!-- first aid -->
+    <div [ngClass]="classesHeading02" (click)="sectClick02()">
+      <div class="hdg-text">{{ staticService.staticText[theData.lg].label.hdg02 }}</div>
+    </div>
+    <div [ngClass]="classesContent02">
+      <div class="gray-box"> <span [innerHTML]="firstAidEmergencies"></span></div><br>
+      <span class="content-label">{{ staticService.staticText[theData.lg].label.firstAidSwallowed }}:</span><br>
+      <div [innerHTML]="firstAidSwallow"></div><br>
+      <span class="content-label">{{ staticService.staticText[theData.lg].label.firstAidInEyes }}:</span><br>
+      <div [innerHTML]="firstAidInEyes"></div><br>
+      <span class="content-label">{{ staticService.staticText[theData.lg].label.firstAidSkin }}:</span><br>
+      <div [innerHTML]="firstAidSkin"></div><br>
+      <span class="content-label">{{ staticService.staticText[theData.lg].label.firstAidInhaled }}:</span><br>
+      <div [innerHTML]="firstAidInhaled"></div><br>
+      <span class="content-label">{{ staticService.staticText[theData.lg].label.firstAidPhysician }}:</span><br>
+      <div [innerHTML]="firstAidPhysician"></div><br>
+      <span class="content-label">{{ staticService.staticText[theData.lg].label.firstAidPoisonControl }}:</span><br>
+      <div [innerHTML]="firstAidCallCenter"></div><br>
+      <span class="content-label">{{ staticService.staticText[theData.lg].label.firstAidEmergencyPhone }}:</span><br>
+      <div [innerHTML]="firstAidEmergPhone"></div><br>
+    </div>
+
+    <!-- health and safety -->
+    <div [ngClass]="classesHeading03" (click)="sectClick03()">
+      <div class="hdg-text">{{ staticService.staticText[theData.lg].label.hdg03 }}</div>
+    </div>
+    <div [ngClass]="classesContent03">
+      <span class="content-label">{{ staticService.staticText[theData.lg].label.rei }}: </span>
+      <span [innerHTML]="rei"></span><br><br>
+      <span class="content-label">{{ staticService.staticText[theData.lg].label.phi }}: </span>
+      <span [innerHTML]="phi"></span><br><br>
+      <div class="large-heading"> {{ staticService.staticText[theData.lg].label.precautionaryStatements }} </div>
+
+      <div [ngSwitch]="signalWord">
+        <div *ngSwitchCase="'CAUTION'">
+
+          <div class="gray-box" style="border-width: 5px; border-color: rgb(245, 245, 0);">
+            <div class="large-heading"> {{ staticService.staticText[theData.lg].label.signalCaution }} </div>
+          </div>
+
+        </div>
+        <div *ngSwitchCase="'WARNING'">
+
+          <div class="gray-box" style="border-width: 5px; border-color: orange;">
+            <div class="large-heading"> {{ staticService.staticText[theData.lg].label.signalWarning }} </div>
+          </div>
+
+        </div>
+        <div *ngSwitchCase="'DANGER'">
+
+          <div class="gray-box" style="border-width: 5px; border-color: red;">
+            <div class="large-heading"> {{ staticService.staticText[theData.lg].label.signalDanger }} </div>
+          </div>
+
+        </div>
+        <div *ngSwitchCase="'POISON'">
+
+          <div class="gray-box" style="text-align: center; border-width: 5px; border-color: red;">
+            <div class="large-heading"> {{ staticService.staticText[theData.lg].label.signalDanger }} </div>
+            <img src="../../assets/images/SkullCB.svg" style="height: 50px; padding: 10px;"
+              alt="SYMBOL: Skull and Crossbones">
+            <div class="large-heading" style="color: red;">
+              {{ staticService.staticText[theData.lg].label.signalPoison }} </div>
+          </div>
+
+        </div>
+        <div *ngSwitchCase="'UNKNOWN'">
+          <br>
+        </div>
+      </div>
+
+      <div *ngIf="hazardStatement !='--'">
+        <div class="plain-box">
+          <span [innerHTML]="hazardStatement"></span>
+        </div>
+      </div>
+      <span class="content-label">{{ staticService.staticText[theData.lg].label.safetyPrecautionHdr }}:</span><br>
+      <span [innerHTML]="safetyRecommendations"></span>
+    </div>
+
+    <!-- PPE -->
+    <div [ngClass]="classesHeading04" (click)="sectClick04()">
+      <div class="hdg-text">{{ staticService.staticText[theData.lg].label.hdg04 }}</div>
+    </div>
+    <div [ngClass]="classesContent04">
+      <span class="content-label">{{ staticService.staticText[theData.lg].label.ppeHdg }}: </span>
+      <div class="content-normal" [innerHTML]="ppeEquip"></div>
+      <br>
+      <span class="content-label">{{ staticService.staticText[theData.lg].label.agUseReentryPPE }}: </span>
+      <div class="content-normal" [innerHTML]="agUseReentryFull"></div>
+    </div>
+
+    <!-- engineering controls -->
+    <div [ngClass]="classesHeading05" (click)="sectClick05()">
+      <div class="hdg-text">{{ staticService.staticText[theData.lg].label.hdg05 }}</div>
+    </div>
+    <div [ngClass]="classesContent05">
+      <div class="content-normal" [innerHTML]="engControls"></div>
+    </div>
+
+    <!-- physical or chemical hazards -->
+    <div [ngClass]="classesHeading06" (click)="sectClick06()">
+      <div class="hdg-text">{{ staticService.staticText[theData.lg].label.hdg06 }}</div>
+    </div>
+    <div [ngClass]="classesContent06">
+      <div class="content-normal" [innerHTML]="physHazards"></div>
+    </div>
+
+    <!-- storage and disposal -->
+    <div [ngClass]="classesHeading07" (click)="sectClick07()">
+      <div class="hdg-text">{{ staticService.staticText[theData.lg].label.hdg07 }}</div>
+    </div>
+    <div [ngClass]="classesContent07">
+      <div class="content-normal" [innerHTML]="storageDisposal"></div>
+    </div>
+
+    <!-- environmental hazards -->
+    <div [ngClass]="classesHeading08" (click)="sectClick08()">
+      <div class="hdg-text">{{ staticService.staticText[theData.lg].label.hdg08 }}</div>
+    </div>
+    <div [ngClass]="classesContent08">
+      <div class="content-normal" [innerHTML]="envHazards"></div>
+    </div>
+
+    <!-- spray drift -->
+    <div [ngClass]="classesHeading09" (click)="sectClick09()">
+      <div class="hdg-text">{{ staticService.staticText[theData.lg].label.hdg09 }}</div>
+    </div>
+    <div [ngClass]="classesContent09">
+      <div class="gray-box">
+        <div class="box-heading">{{ staticService.staticText[theData.lg].label.sprayDriftCheckLabelHdg }}</div>
+        <br>
+        {{ staticService.staticText[theData.lg].label.sprayDriftBody }}
+      </div>
+
+      <div class="content-normal" [innerHTML]="sprayDrift"></div>
+    </div>
+
+    <!-- pesticide labels -->
+    <div [ngClass]="classesHeading10" (click)="sectClick10()">
+      <div class="hdg-text">{{ staticService.staticText[theData.lg].label.hdg10 }}</div>
+    </div>
+    <div [ngClass]="classesContent10">
+      <div class="content-label"> {{ staticService.staticText[theData.lg].label.picolHdg }}: </div>
+      <span class="content-label"> {{ staticService.staticText[theData.lg].label.pdfLabelLink }}: </span><br>
+      <span class="content-normal">
+        <ion-button href="{{picolLink}}" fill="outline" size="small" type="application/pdf" target="_blank"
+          class="ion-text-wrap" (click)="logDownload()">
+          {{ staticService.staticText[theData.lg].label.viewlabel }}</ion-button>
+        <!-- <ion-button fill="outline" size="small" class="ion-text-wrap" (click)="labelDownload()">
+          {{ staticService.staticText[theData.lg].label.viewlabel }}</ion-button> -->
+      </span><br><br>
+      <span class="content-label"> {{ staticService.staticText[theData.lg].label.pdfSupplementLinks }}: </span><br>
+      <div *ngIf="supps.length==0" class="content-normal">--</div>
+      <div *ngFor="let supp of supps; index as n ">
+        <ion-button href="{{supp.link}}" fill="outline" size="small" type="application/pdf" target="_blank" class="ion-text-wrap" (click)="logSuppDownload()">{{ supp.label }}</ion-button>
+        <!-- <ion-button fill="outline" size="small" class="ion-text-wrap" (click)="suppDownload(n)">{{ supp.label }}
+        </ion-button> -->
+      </div>
+    </div>
+
+    <hr>
+    <div *ngIf="trademark != '--'" class="fineprint" style="margin-bottom: 10px;">
+      <div [innerHTML]="trademark"></div>
+    </div>
+
+    <div class="fineprint">
+      {{ staticService.staticText[theData.lg].fineprint.trademark }}
+    </div>
+    <br>
+
+    <div class="fineprint">
+      {{ staticService.staticText[theData.lg].fineprint.translations }}
+      <br><br>
+      {{ staticService.staticText[theData.lg].fineprint.translations2 }}
+    </div>
+    <br>
+
+    <div class="fineprint" [innerHtml]="staticService.staticText[theData.lg].fineprint.guide"> </div>
+    <br>
+
+  </div>
+  <div style="height: calc(var(--normalprint) * 4);">&nbsp;</div>
+  <div style="text-align: center;"><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank"><img
+        src="../../assets/images/cc-by-nc-sa.svg" alt="Creative Commons-Attribution-NonCommercial-ShareAlike icon"
+        style="height: calc(var(--normalprint) * 2.5);"></a> </div>
+
+</ion-content>
+
+<ion-footer>
+  <div style="background-color: rgba(255, 255, 0, 0.3); padding: 10px; text-align: center;" class="fineprint">
+    <div>{{ staticService.staticText[theData.lg].fineprint.banner }} </div>
+  </div>
+  <div class="fineprint" style="text-align: center;">{{ copyright }}</div>
+</ion-footer>

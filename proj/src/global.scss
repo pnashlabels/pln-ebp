@@ -1,0 +1,297 @@
+/*
+Copyright 2020-2021 The State of Washington
+
+Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
+
+1. Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer.
+
+2. Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and/or other materials provided with the distribution.
+
+3. Neither the name of the copyright holder nor the names of its contributors may be used to endorse or promote products derived from this software without specific prior written permission.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. 
+ */
+
+/*
+ * App Global CSS
+ * ----------------------------------------------------------------------------
+ * Put style rules here that you want to apply globally. These styles are for
+ * the entire app and not just one component. Additionally, this file can be
+ * used as an entry point to import other CSS/Sass files to be included in the
+ * output CSS.
+ * For more information on global stylesheets, visit the documentation:
+ * https://ionicframework.com/docs/layout/global-stylesheets
+ */
+
+/* Core CSS required for Ionic components to work properly */
+@import "~@ionic/angular/css/core.css";
+
+/* Basic CSS for apps built with Ionic */
+@import "~@ionic/angular/css/normalize.css";
+@import "~@ionic/angular/css/structure.css";
+@import "~@ionic/angular/css/typography.css";
+@import '~@ionic/angular/css/display.css';
+
+/* Optional CSS utils that can be commented out */
+@import "~@ionic/angular/css/padding.css";
+@import "~@ionic/angular/css/float-elements.css";
+@import "~@ionic/angular/css/text-alignment.css";
+@import "~@ionic/angular/css/text-transformation.css";
+@import "~@ionic/angular/css/flex-utils.css";
+
+/* body {
+    background-color: var(--ion-color-success);
+} */
+ion-app {
+    /* margin-top: env(safe-area-inset-top); */
+    margin-bottom: env(safe-area-inset-bottom);
+    /* font-family: 'Arial Narrow', Helvetica, sans-serif; */
+}
+
+a:link {
+    text-decoration: none;
+  }
+  
+  /* visited link */
+  a:visited {
+    text-decoration: none;
+  }
+
+.aboutimage {
+    padding-top: calc(var(--normalprint) + var(--font-size-adj));
+}
+
+.menubutton {
+    color: var(--fontcolor);
+}
+
+.imgcenter {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;  
+}
+
+.appcolors {
+    color: var(--fontcolor);
+    background-color: white;
+}
+
+.bold-italic {
+    font-style: italic;
+    font-weight: bold;
+}
+
+table {
+    border-color: #00005f;
+}
+
+td {
+    color: var(--fontcolor);
+}
+
+li {
+    padding-top: 1px;
+    padding-bottom: 1px;
+}
+
+.lg-ind {
+    font-size: calc(var(--fineprint) + var(--font-size-adj));
+    background-color: white;
+    color:  #2d833e;
+    /* background-color: var(--ion-color-success);
+    color: white; */
+    border-radius: 3px;
+    border-style: solid;
+    border-width: 1px;
+    border-color: var(--ion-color-success);
+    /* font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; */
+    text-transform: uppercase;
+    margin-left: 2px;
+    margin-right: 2px;
+    padding-left: 1px;
+    padding-right: 1px;
+}
+
+.fineprint {
+    font-size: calc(var(--fineprint) + var(--font-size-adj));
+    text-align: left;
+}
+
+.smallerprint {
+    font-size: calc(var(--smallerprint) + var(--font-size-adj));
+    /* text-align: left; */
+}
+
+.normalprint {
+    font-size: calc(var(--normalprint) + var(--font-size-adj));
+    text-align: left;
+}
+
+.divbtm {
+    position: fixed;
+    left: 0;
+    bottom: 0px;
+    right: 0;
+}
+
+ion-button {
+    text-transform: none;
+    font-size: calc(var(--button-font-size) + var(--font-size-adj));
+    height: calc((var(--button-font-size)  + var(--font-size-adj)) * 2.75);
+}
+
+ion-tab-button {
+    text-transform: none;
+}
+
+.title-text {
+    text-align: center; 
+    font-weight: bold;
+    font-size: calc(var(--titleprint)  + var(--font-size-adj));
+}
+
+.disclaimerbox {
+    border-width: 1px;
+    border-style: solid;
+    padding: 5px;
+    /* background-color: #eeeeee; */
+}
+  
+.disclaimerbold {
+    font-size: calc(var(--titleprint) + var(--font-size-adj));
+    font-weight: bold;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+.gray-box {
+    margin-left: 0px;
+    margin-right: 0px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    padding: 10px;
+    border-style: solid;
+    border-width: 1px;
+    text-align: left;
+    background-color: #efefef
+}
+
+.plain-box {
+    margin-left: 0px;
+    margin-right: 0px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    padding: 10px;
+    border-style: solid;
+    border-width: 1px;
+    text-align: left;
+}
+
+.resourceitem {
+    font-size: calc(var(--normalprint) + var(--font-size-adj)); 
+    padding: 10px;
+}
+
+.icon-img {
+    height: calc(100vw / 4);
+}
+
+.icon-about-img {
+    height: calc(100vw / 3);
+}
+
+.headingleft {
+    font-size: calc(var(--titleprint) + var(--font-size-adj));
+    font-weight: bold;
+    text-align: left;
+}
+
+.headingcenter {
+    font-size: calc(var(--titleprint) + var(--font-size-adj));
+    font-weight: bold;
+    text-align: center;
+}
+
+.eulaheading {
+    font-size: calc(var(--normalprint) + var(--font-size-adj));
+    font-weight: bold;
+    text-align: center;
+}
+
+.subheadingleft {
+    font-size: calc(var(--titleprint) + var(--font-size-adj));
+    font-weight: bold;
+}
+
+.smallsubheadingleft {
+    font-size: calc(var(--normalprint) + var(--font-size-adj));
+    font-weight: bold;
+}
+
+.indentedcontent {
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.indentedresources {
+    padding-left: 25px;
+}
+  
+.ProdDetails {
+    font-size: calc(var(--normalprint) + var(--font-size-adj));
+    font-weight: normal;
+}
+
+.ProdName {
+    font-size: calc(var(--normalprint) + var(--font-size-adj));
+    font-weight: bold;
+}
+
+.ProdItem {
+    font-size: calc(var(--smallerprint) + var(--font-size-adj));
+    border-style: none;
+    border-width: 0px;
+    border-color: #cecece;
+    border-top-style: solid;
+    border-bottom-style: solid;
+    border-top-width: 1px;
+    border-bottom-width: 1px;
+    padding: 5px;
+}
+
+.hdg-text {
+    padding-left: calc(var(--collapsible-font-size) + var(--font-size-adj));
+}
+
+.content-label {
+    font-weight: bold;
+    padding-bottom: 20px;
+}
+
+.content-normal {
+    padding-left: 0px;
+}
+
+.picol-indent {
+    padding-left: 20px;
+}
+
+.greenprint {
+    color: darkgreen;
+}
+
+.redprint {
+    color: rgb(173, 0, 0);
+}
+
+.orangeprint {
+    color: rgb(179, 116, 0);
+}
+
+.inline-italic {
+    font-style: italic;
+}
+
+.inline-bold {
+    font-weight: bold;
+}

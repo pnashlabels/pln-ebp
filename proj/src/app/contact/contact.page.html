@@ -1,0 +1,85 @@
+<!--  
+/*
+Copyright 2020-2021 The State of Washington
+
+Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
+
+1. Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer.
+
+2. Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and/or other materials provided with the distribution.
+
+3. Neither the name of the copyright holder nor the names of its contributors may be used to endorse or promote products derived from this software without specific prior written permission.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. 
+ */
+
+
+-->
+
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button (click)="goBack()" class="appcolors" text=""></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <div class="appcolors smallerprint">
+    <div style="height: calc(var(--normalprint) * 2);">&nbsp;</div>
+    <div class="headingcenter"> {{ staticService.staticText[theData.lg].contact.title }} </div>
+    <br>
+
+    <div class="aboutimage">
+      <a href="">
+        <img src="../../assets/images/logo-1.png" alt="LOGO: Etiquetas Pesticidas Ahora / Pesticide Labels Now">
+      </a>
+    </div>
+    <br><br>
+    <br>
+    <div>
+      <span style="font-weight: bold;"> {{ staticService.staticText[theData.lg].contact.email }}: </span>
+      <a href="mailto: "> someone@example.com</a>
+    </div>
+    <br>
+    <div>
+      <div style="font-weight: bold;"> {{ staticService.staticText[theData.lg].contact.phone }}: </div>
+      <table>
+        <tbody>
+          <tr>
+            <td style="vertical-align: top; padding-right: 10px; padding-left: 5px; padding-bottom: 5px;">
+              <span class="lg-ind">en</span> <br>
+            </td>
+            <td style="padding-bottom: 5px;">
+              First Name Last Name
+              <a href="tel:+xxxxxxxx">(xxx)xxx-xxxx</a><br>
+            </td>
+          </tr>
+          <tr>
+            <td style="vertical-align: top; padding-right: 10px; padding-left: 5px; padding-bottom: 5px;">
+              <span class="lg-ind">es</span> <br>
+            </td>
+            <td style="padding-bottom: 5px;">
+              First Name Last Name
+              <a href="tel:+xxxxxxxx">(xxx)xxx-xxxx</a><br>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <br>
+    <div>
+      <span style="font-weight: bold;"> {{ staticService.staticText[theData.lg].contact.website }}: </span>
+      <a href="">
+        
+      </a>
+    </div>
+  </div>
+  <div style="height: calc(var(--normalprint) * 4);">&nbsp;</div>
+  <ion-fab *ngIf="showTranslate" vertical="top" horizontal="end" slot="fixed">
+    <ion-fab-button size="small" (click)="switchLanguage()">
+      <ion-icon src="../../assets/images/translate3.svg" name="Switch Language"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
+</ion-content>

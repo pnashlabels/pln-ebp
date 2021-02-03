@@ -1,0 +1,147 @@
+/*
+Copyright 2020-2021 The State of Washington
+
+Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
+
+1. Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer.
+
+2. Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and/or other materials provided with the distribution.
+
+3. Neither the name of the copyright holder nor the names of its contributors may be used to endorse or promote products derived from this software without specific prior written permission.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. 
+ */
+
+ion-button {
+    text-transform: none;
+    font-size: calc(var(--button-smallfont-size) + var(--font-size-adj));
+}
+
+.labeldisplay {
+    font-size: calc(var(--normalprint) + var(--font-size-adj));
+}
+
+.collapsible-heading {
+    border-style: solid;
+    border-width: 1px;
+    border-color: #339947;
+    padding-top: calc(var(--collapsible-font-size) + var(--font-size-adj));
+    padding-bottom: calc(var(--collapsible-font-size) + var(--font-size-adj));
+    padding-left: 10px;
+    padding-right: 5px;    
+    font-weight: 600;
+    font-size: calc(var(--collapsible-font-size) + var(--font-size-adj));
+}
+
+.collapsible-heading-open {
+    background-color: rgba(51, 153, 71, 0.25);
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+    border-bottom-left-radius: 0px;
+    border-bottom-right-radius: 0px;
+    margin-bottom: 10px;
+    /* color: white; */
+    color: var(--fontcolor);
+    /* color: var(--ion-color-success); */
+}
+
+.collapsible-heading-open::before {
+    /* content:  '⨂'; */
+    content: '-';
+    /* content: '－'; */
+    font-weight: bold;
+    float: left;
+    margin-right: 5px;
+}
+
+.collapsible-heading-closed::before {
+    /* content: '⨁'; */
+    content: '+';
+    /* content: '＋'; */
+    font-weight: bold;
+    float: left;
+    margin-right: 5px;
+}
+
+.collapsible-heading-closed {
+    /* background-color: #339947; */
+    background-color: #339947cf;
+    border-radius: 12px;
+    margin-bottom: 1px;
+    color: white;
+}
+
+.collapsible-content {
+    margin-top: 5px;
+    margin-bottom: 10px;
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+.collapsed {
+    display: none;
+    padding-bottom: 0px;
+}
+
+.expanded {
+    display: block;
+    padding-bottom: 20px;
+}
+
+.box-heading {
+    font-style: normal;
+    font-weight: bold;
+    text-align: center;
+    font-size: calc(var(--normalprint) + var(--font-size-adj));
+}
+
+.large-heading {
+    font-style: normal;
+    font-weight: bold;
+    text-align: center;
+    font-size: calc(var(--largetitleprint) + var(--font-size-adj));
+}
+
+.ing-table {
+    width: 100%;
+    border-width: 1px;
+    border-style: solid;
+    border-collapse: collapse;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.ing-table-thead {
+    background-color: #efefef;
+    border-width: 1px;
+    border-style: solid;
+}
+
+.ing-table-th {
+    font-weight: bold;
+    border-bottom-width: 1px;
+    border-bottom-style: solid;
+}
+
+.lg-chg-btn {
+    width: 48%;
+    /* height: 60px;  */
+    font-size: calc(var(--button-font-size) + var(--font-size-adj));
+    text-transform: none;
+    padding: 5px;
+}
+
+.toolbar-title {
+    text-overflow: unset;
+    white-space: unset;
+ }
+
+.title-prod-name {
+    font-size: calc(var(--smallerprint) + 0);
+    font-weight: bold;
+}
+
+.subtitle {
+    font-size: calc(var(--fineprint) + 0); 
+    font-weight: normal;
+}
